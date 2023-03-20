@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "c9fb98cb-1a19-4b6c-885e-fe91aa30b90e",
+		"name": "automateusingcsv",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26158081"
+	},
+	"item": [
+		{
+			"name": "createauto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"let id=pm.response.json();",
+							"pm.environment.set(\"idvalue\", id.ID);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Learn Appium Automation with Java\",\n\"isbn\":\"{{isbn}}\",\n\"aisle\":\"52\",\n\"author\":\"{{author}}\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}Addbook.php/qa",
+					"host": [
+						"{{url}}Addbook",
+						"php"
+					],
+					"path": [
+						"qa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getidauto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}GetBook.php?ID={{idvalue}}",
+					"host": [
+						"{{url}}GetBook",
+						"php"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "{{idvalue}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getnameauto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}GetBook.php?AuthorName={{author}}",
+					"host": [
+						"{{url}}GetBook",
+						"php"
+					],
+					"query": [
+						{
+							"key": "AuthorName",
+							"value": "{{author}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteauto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ID\":\"{{idvalue}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}DeleteBook.php",
+					"host": [
+						"{{url}}DeleteBook",
+						"php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
